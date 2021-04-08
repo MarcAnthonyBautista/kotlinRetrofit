@@ -1,10 +1,25 @@
 package com.example.retrofitpractice.`interface`
 
+import com.example.retrofitpractice.model.Comment
 import com.example.retrofitpractice.model.Post
 import retrofit2.Call
-import retrofit2.http.GET
+import retrofit2.http.*
 
 interface JsonPlaceHolderApi {
     @GET("posts")
-    fun getPost(): Call<List<Post>>
+    fun getPost(
+        @Query("userId") userId: IntArray,
+        @Query("_sort") sort: String?,
+        @Query("_order") order: String?
+    ): Call<List<Post>>
+
+    @GET("posts")
+    fun getPost(@QueryMap parameters:Map<String, String>): Call<List<Post>>
+
+    @GET("posts/{id}/comments")
+    fun getComments(@Path("id") postId: Int):Call<List<Comment>>
+
+    @GET
+    fun getComments(@Url url:String)
+
 }
