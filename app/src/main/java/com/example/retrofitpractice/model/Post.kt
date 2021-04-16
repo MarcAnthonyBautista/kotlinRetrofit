@@ -8,4 +8,10 @@ class Post {
     var title = "";
     @SerializedName("body")
     var text=""
+
+    constructor(userId: Int, title: String, text: String) {
+        this.userId = userId
+        this.title = title
+        this.text = text
+    }
 }
